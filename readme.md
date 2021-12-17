@@ -8,4 +8,3 @@
 #### 섹션 8. 재귀함수와 완전탐색(DFS:깊이우선탐색)           - 15 강 ∙ 3시간 48분
 #### 섹션 9. 그래프와 탐색(DFS, BFS:넓이우선탐색)            - 8 강 ∙ 1시간 49분
 #### 섹션 10. Dynamic programming(동적계획법 )               - 5 강 ∙ 1시간 6분
-[자바스크립트_알고리즘.pdf](https://github.com/Harimad/https-github.com-Harimad-replJS/files/7732629/_.pdf)
