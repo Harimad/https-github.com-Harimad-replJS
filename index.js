@@ -1,10 +1,10 @@
-function solution(s, t){
+function solution(s){         
   let answer = 0;
   for (let x of s) {
-    if (x === t) answer++;
+    if (x.charCodeAt() >= 65 && x.charCodeAt() <= 90) answer++;
   }
   return answer;
 }
 
-let str="COMPUTERPROGRAMMING";
-console.log(solution(str, 'R'));
+let str= "KoreaTimeGood";
+console.log(solution(str));
