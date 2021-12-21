@@ -1,11 +1,10 @@
-function solution(s){
-  let answer= '';
+function solution(s, t){
+  let answer = 0;
   for (let x of s) {
-    if (x !== 'A') answer += x;
-    else answer += '#';
+    if (x === t) answer++;
   }
   return answer;
 }
 
-let str="BANANA";
-console.log(solution(str));
+let str="COMPUTERPROGRAMMING";
+console.log(solution(str, 'R'));
