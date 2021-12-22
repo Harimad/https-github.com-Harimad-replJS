@@ -1,13 +1,11 @@
-function solution(s){         
-  let answer='';
-
+function solution(s){  
+  let answer="";
   for (let x of s) {
-    if (x === x.toUpperCase()) answer += x;
-    else answer += x.toUpperCase();
+    let num = x.charCodeAt();
+    if (num >= 65 && num <= 90) answer += String.fromCharCode(num + 32)
+    else answer += String.fromCharCode(num - 32);
   }
   return answer;
-
 }
 
-let str="ItisTimeToStudy";
-console.log(solution(str));
+console.log(solution("StuDY"));
