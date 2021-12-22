@@ -1,11 +1,13 @@
 function solution(s){  
-  let answer="";
+  let answer="", maxLen = s[0].length;
   for (let x of s) {
-    let num = x.charCodeAt();
-    if (num >= 65 && num <= 90) answer += String.fromCharCode(num + 32)
-    else answer += String.fromCharCode(num - 32);
+    if (x.length > maxLen) {
+      maxLen = x.length;
+      answer = x;
+    }
   }
+  
   return answer;
 }
-
-console.log(solution("StuDY"));
+let str=["teacher", "time", "student", "beautiful", "good"];
+console.log(solution(str));
