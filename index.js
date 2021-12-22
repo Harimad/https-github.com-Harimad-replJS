@@ -1,12 +1,14 @@
 function solution(s){  
-  let answer, num = parseInt(s.length / 2);
+  let answer="";
+  let arr = new Array(26).fill(false);
 
-  if (s.length % 2 === 1) {
-    answer = s[num];
-  } else {
-    answer = s[num-1] + s[num];
-  }
+  for (let x of s) {
+    let num = x.charCodeAt() - 96;
+    if (arr[num] === false) {
+      answer += x;
+      arr[num] = true;
+    } 
+  } 
   return answer;
 }
-// console.log(solution("study"));
-console.log(solution('study!'));
+console.log(solution("ksekkset"));
