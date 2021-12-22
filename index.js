@@ -1,13 +1,12 @@
 function solution(s){  
-  let answer="", maxLen = s[0].length;
-  for (let x of s) {
-    if (x.length > maxLen) {
-      maxLen = x.length;
-      answer = x;
-    }
+  let answer, num = parseInt(s.length / 2);
+
+  if (s.length % 2 === 1) {
+    answer = s[num];
+  } else {
+    answer = s[num-1] + s[num];
   }
-  
   return answer;
 }
-let str=["teacher", "time", "student", "beautiful", "good"];
-console.log(solution(str));
+// console.log(solution("study"));
+console.log(solution('study!'));
