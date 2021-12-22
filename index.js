@@ -1,10 +1,13 @@
 function solution(s){         
-  let answer = 0;
+  let answer='';
+
   for (let x of s) {
-    if (x.charCodeAt() >= 65 && x.charCodeAt() <= 90) answer++;
+    if (x === x.toUpperCase()) answer += x;
+    else answer += x.toUpperCase();
   }
   return answer;
+
 }
 
-let str= "KoreaTimeGood";
+let str="ItisTimeToStudy";
 console.log(solution(str));
