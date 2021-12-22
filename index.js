@@ -1,29 +1,10 @@
-// function solution(s){  
-//   let answer="";
-//   let arr = new Array(26).fill(false);
-
-//   for (let x of s) {
-//     let num = x.charCodeAt() - 96;
-//     if (arr[num] === false) {
-//       answer += x;
-//       arr[num] = true;
-//     } 
-//   } 
-//   return answer;
-// }
-// console.log(solution("ksekkset"));
-
-function solution(s){
-  let answer = [];
-
-  for (let x of s) {
-    if (answer.indexOf(x) === -1) {
-      answer.push(x);
-    }
+function solution(arr){         
+  let answer=[arr[0]];
+  for(let i = 1; i < arr.length; i++){
+    if(arr[i] > arr[i-1]) answer.push(arr[i]);
   }
-
   return answer;
 }
 
-let str=["good", "time", "good", "time", "student"];
-console.log(solution(str));
+let arr=[7, 3, 9, 5, 6, 12];
+console.log(solution(arr));
