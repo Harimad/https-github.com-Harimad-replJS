@@ -1,15 +1,16 @@
-function solution(a, b){         
-  let answer=[];
-  for (let i=0; i<a.length; i++) {
-    let diff = a[i]-b[i];
-    if (diff == 1 || diff == -2) answer.push('A');
-    else if (diff == -1 || diff == 2) answer.push('B');
-    else answer.push('D');
+function solution(arr){         
+  let answer=0, acc=1;
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] == 1) {
+      answer+=acc;
+      acc++;
+    } else if(arr[i] == 0){
+      acc = 1;
+    }
   }
+    
   return answer;
 }
 
-
-let a=[2, 3, 3, 1, 3];
-let b=[1, 1, 2, 2, 3];
-console.log(solution(a, b));
+let arr=[1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+console.log(solution(arr));
