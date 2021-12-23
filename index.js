@@ -1,42 +1,27 @@
 function solution(arr){  
-  let answer = 0, max = Number.MIN_SAFE_INTEGER, rowSum = 0, colSum = 0, rightCross = 0, leftCross = 0;
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
-      rowSum += arr[i][j];
-      colSum += arr[j][i];
-      if (i == j) {
-        rightCross += arr[i][j];
-        leftCross += arr[i][arr.length-1-j];
-      }
-    }
-    if (max < rowSum) {
-      max = rowSum;
-      answer = max;
-    }
-    if (max < colSum) {
-      max = colSum;
-      answer = max;
-    }
-    if (max < rightCross) {
-      max = rightCross;
-      answer = max;
-    }
-    if (max < leftCross) {
-      max = leftCross;
-      answer = max;
-    }
-    rowSum = 0;
-    colSum = 0;
+  let newArr=[...arr], answer = 0;
+  newArr.unshift(new Array(arr.length+2).fill(0));
+  newArr.push(new Array(arr.length+2).fill(0));
+  for (let i = 1; i < arr.length+1; i++) {
+    newArr[i].unshift([0]);
+    newArr[i].push([0]);
   }
 
+  for(let i = 1; i < arr.length+1; i++) {
+    for (let j = 1; j < arr.length+1; j++) {
+      let elem = newArr[i][j];
+      if(elem > newArr[i][j+1] && elem > newArr[i+1][j] && elem > newArr[i-1][j] && elem > newArr[i][j-1]) {
+        answer++;
+      }
+    }
+  }
   return answer;
 }
 
-let arr = [
-  [10, 13, 10, 12, 15], 
-  [12, 39, 30, 23, 11],
-  [11, 25, 50, 53, 15],
-  [19, 27, 29, 37, 27],
-  [19, 13, 30, 13, 19]
-];
+let arr=[[5, 3, 7, 2, 3], 
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2]];
+
 console.log(solution(arr));
