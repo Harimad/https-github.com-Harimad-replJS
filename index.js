@@ -1,26 +1,16 @@
-function solution(s, t){
-  let answer=[], count=0;
-
+function solution(s){
+  let answer='', count = 1;
   for (let i = 0; i < s.length; i++) {
-    if (s[i] === t) {
-      count = 0;
-      answer.push(count);
-    } else {
+    while(s[i] == s[i+1]) {
       count++;
-      answer.push(count);
+      i++;
     }
+    if (count == 1) answer += s[i];
+    else answer += `${s[i]}${count}`;
+    count = 1;
   }
-  for (let i = s.length-1; i >= 0; i--) {
-    if (s[i] === t) {
-      count = 0;
-    } else {
-      count++;
-      answer[i] = Math.min(answer[i], count);
-    }
-  }
-
   return answer;
 }
 
-let str="teachermode";
-console.log(solution(str, 'e'));
+let str="KKHSSSSSSSE";
+console.log(solution(str));
