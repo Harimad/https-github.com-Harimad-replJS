@@ -61,4 +61,7 @@
             console.log(solution(arr));
         </script>
     </body>
+</html>le.log(solution(arr));
+        </script>
+    </body>
 </html>

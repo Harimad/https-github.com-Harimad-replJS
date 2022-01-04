@@ -1,21 +1,19 @@
-
-function solution(n, arr){
-  let answer=0, max=Number.MIN_SAFE_INTEGER;
-  for (let i = 0; i < n; i++) {
-    let sum = 0, temp = arr[i];
-    while(temp) {
-      sum += temp%10;
-      temp = parseInt(temp/10);
-    }
-    if (sum > max) {
-      max = sum;
-      answer = arr[i];
-    } else if (sum === max) {
-      if (arr[i] > answer) answer = arr[i];
-    }
+function solution(arr){
+  let answer=[];
+  for (let x of arr) {
+    x = parseInt(x.toString().split('').reverse().join(''));
+    if (isPrime(x)) answer.push(x);
   }
   return answer;
 }
 
-let arr=[128, 460, 603, 40, 521, 137, 123];
-console.log(solution(7, arr));
+function isPrime(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i*i <= num; i++) {
+    if (num % i == 0) return false;
+  }
+  return true;
+}
+
+let arr=[32, 55, 62, 20, 250, 370, 200, 30, 100];
+console.log(solution(arr));
