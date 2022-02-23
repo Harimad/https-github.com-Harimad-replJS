@@ -1,14 +1,22 @@
-function solution(k, arr){
-  let answer = sum = 0;
-    for (let i = 0; i < k; i++) sum += arr[i]; //처음 윈도우 값 구하기 : (12 + 15 + 11)
-    answer = sum;
-    for (let i = k; i < arr.length; i++) {
-      sum += (arr[i] - arr[i-k]);
-      answer = Math.max(answer, sum);
+function solution(s){  
+  let answer;
+  let students = [...s];
+  let countedNames = students.reduce((prev, curr) => {
+    if (curr in prev) prev[curr]++
+    else prev[curr] = 1;
+    return prev;
+  }, {});
+  console.log(countedNames); //{B: 3, A: 3, C: 5, D: 2, E: 2}
+
+  let max = 0;
+  for (let x in countedNames) {
+    if (max < countedNames[x]) {
+      max = countedNames[x];
+      answer = x;
     }
-  
-  return answer;
+  }
+  return answer; // C
 }
 
-let a=[12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
-console.log(solution(3, a));
+let str="BACBACCACCBDEDE";
+console.log(solution(str));
