@@ -1,20 +1,21 @@
 function solution(s){  
   let answer;
-  let students = [...s];
-  let countedNames = students.reduce((prev, curr) => {
-    if (curr in prev) prev[curr]++
-    else prev[curr] = 1;
-    return prev;
-  }, {});
-  console.log(countedNames); //{B: 3, A: 3, C: 5, D: 2, E: 2}
+  let sH = new Map();
+  for (let x of s) { // B A C B A ...
+    if (sH.has(x)) { // x가 sH Map obj에 이미 존재하면
+      sH.set(x, sH.get(x) + 1); //sH[x] 에 기존 숫자에 1 더함
+    } else sH.set(x, 1); //없으면 1로 초기화
+  }
 
-  let max = 0;
-  for (let x in countedNames) {
-    if (max < countedNames[x]) {
-      max = countedNames[x];
-      answer = x;
+  let max = Number.MIN_SAFE_INTEGER;
+  for (let [key, val] of sH) {
+    // console.log(key, val); //B 3 | A 3 | C 5 | D 2 | E 2
+    if (val > max) {
+      max = val;
+      answer = key;
     }
   }
+  
   return answer; // C
 }
 
