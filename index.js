@@ -1,23 +1,27 @@
-function solution(s){  
-  let answer;
+function solution(str1, str2){
+  let answer="YES";
   let sH = new Map();
-  for (let x of s) { // B A C B A ...
-    if (sH.has(x)) { // x가 sH Map obj에 이미 존재하면
-      sH.set(x, sH.get(x) + 1); //sH[x] 에 기존 숫자에 1 더함
-    } else sH.set(x, 1); //없으면 1로 초기화
-  }
 
-  let max = Number.MIN_SAFE_INTEGER;
-  for (let [key, val] of sH) {
-    // console.log(key, val); //B 3 | A 3 | C 5 | D 2 | E 2
-    if (val > max) {
-      max = val;
-      answer = key;
-    }
+  for (let x of str1) {
+    if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+    else sH.set(x, 1);
   }
+  console.log(sH);
   
-  return answer; // C
+  for (let x of str2) {
+    if (!sH.has(x) || sH.get(x) === 0) return "NO";
+    sH.set(x, sH.get(x) - 1);
+  }
+  return answer;
 }
+// let a="AbaAeCe";
+// let b="baeeACA";
+// console.log(solution(a, b)); //YES
 
-let str="BACBACCACCBDEDE";
-console.log(solution(str));
+// let a="AABBCC";
+// let b="EEFFGG";
+// console.log(solution(a, b)); //NO
+
+let a = "abaCC";
+let b = "Caaab";
+console.log(solution(a, b)); //NO
