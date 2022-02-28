@@ -1,27 +1,21 @@
-function solution(s){
-  let answer="YES";
+function solution(s){  
+  let answer;
   let stack = [];
-
   for (let x of s) {
     if (x === '(') stack.push(x);
     else if (x === ')') {
-      if (stack.pop('(') === undefined) return "NO"; // '(' 가 많은 경우
-      stack.pop();
+      // while(true) {
+      //   let tmp = stack.pop();
+      //   if (tmp === '(') break;
+      // }
+      while(stack.pop() !== '('){} //위의 4문장과 같음
+    } else {
+      stack.push(x);
     }
   }
-  if (stack.length !== 0) answer = "NO";
+  answer = stack.join('');
   return answer;
 }
-// '('가 더 많은 경우
-let a="(()(()))(()";
-console.log(solution(a)); //NO
-let b = "()()(";
-console.log(solution(b)); //NO
 
-// ')'가 더 많은 경우
-let c = "()()())";
-console.log(solution(c)); //NO
-
-// '( )' 짝이 맞는 경우
-let d = "()()";
-console.log(solution(d)); //YES
+let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+console.log(solution(str));
