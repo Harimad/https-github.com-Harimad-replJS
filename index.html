@@ -4,30 +4,21 @@ function solution(board, moves) {
 	let stack = [];
 
 	moves.forEach(idx => {
-		let item = pickItem(board, idx-1);
-		console.log(`item: ${item}`);
-		if (item) {
-			if (stack[stack.length-1] === item) {
-				answer += 2;
-				stack.pop();
-			} else {
-				stack.push(item);
+		let item;
+		for (let i = 0; i < board.length; i++) {
+			if (board[i][idx-1] !== 0) {
+				item = board[i][idx-1];
+				console.log(`item: ${item}`);
+				board[i][idx-1] = 0;
+				break;
 			}
-			console.log(`stack: ${stack}`);
 		}
+		if (stack[stack.length-1] === item) {
+			stack.pop();
+			answer += 2;
+		} else stack.push(item);
 	})
 	return answer;
-}
-
-function pickItem(board, idx) {
-	let item;
-	for (let i = 0; i < board.length; i++) {
-		if (board[i][idx] !== 0) {
-			item = board[i][idx];
-			board[i][idx] = 0;
-			return item;
-		}
-	}
 }
 
 let board=[[0,0,0,0,0],
@@ -38,5 +29,4 @@ let board=[[0,0,0,0,0],
 
 let moves=[1, 5, 3, 5, 1, 2, 1, 4];
 console.log(solution(board, moves));
-
 </script>
