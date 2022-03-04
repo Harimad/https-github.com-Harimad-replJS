@@ -1,26 +1,19 @@
 <script>
-function solution(s){
-	let stack = [];
-	for (let x of s) {
-		if (x === '+' || x === '-' || x === '*' || x === '/') {
-			stack.push(calc(stack, x));
-			continue;
+	function solution(s) {
+		let answer = 0;
+		let stack = [];
+		for (let i = 0; i < s.length; i++) {
+			if (s[i] === '(') {
+				stack.push(s[i]);
+			} else {
+				stack.pop();
+				if (s[i - 1] === '(') answer += stack.length;
+				else if (s[i - 1] === ')') answer += 1;
+			}
 		}
-		stack.push(x);
+		return answer;
 	}
-	return stack[0];
 
-function calc(stack, opertaor) {
-	let num1 = parseInt(stack.pop());
-	let num2 = parseInt(stack.pop());
-	switch (opertaor) {
-		case '+': return num2 + num1;
-		case '-': return num2 - num1;
-		case '*': return num2 * num1;
-		case '/': return num2 / num1;
-	}
-}
-
-let str="352+*9-"; // 3 * (5 + 2) - 9
-console.log(solution(str)); //12
+	let a = "()(((()())(())()))(())";
+	console.log(solution(a));
 </script>
