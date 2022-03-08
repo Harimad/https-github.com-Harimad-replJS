@@ -1,28 +1,13 @@
 <script>
-	function solution(need, plan) {
-		let queue = [...plan], check = [...need];
-		while (queue.length) {
-			if (check.includes(queue[0]) && queue[0] !== check[0]) return "NO";
-			if (!check.length) return "YES";
-			if (queue[0] === check[0]) check.shift();
-			queue.shift();
+	function solution(arr) {
+		for (let i = 0; i < arr.length - 1; i++) {
+			for (let j = i + 1; j < arr.length; j++) {
+				if (arr[i] > arr[j]) [arr[i], arr[j]] = [arr[j], arr[i]];
+			}
 		}
-		return "NO";
+		return arr;
 	}
 
-	let a = "CBA";
-	let b = "CBDAGE";
-	console.log(solution(a, b)); //YES
-
-	let c = "CBA";
-	let d = "DGECAFB";
-	console.log(solution(c, d)); //NO
-
-	let e = "ABC";
-	let f = "BABC";
-	console.log(solution(e, f)); //NO(Included, but not matched)
-
-	let g = "XYZ";
-	let h = "CBDAGE";
-	console.log(solution(g, h)); //NO
+	let arr = [13, 5, 11, 7, 23, 15];
+	console.log(solution(arr));
 </script>
