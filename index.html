@@ -1,13 +1,17 @@
 <script>
 	function solution(arr) {
-		for (let i = 0; i < arr.length - 1; i++) {
-			for (let j = i + 1; j < arr.length; j++) {
-				if (arr[i] > arr[j]) [arr[i], arr[j]] = [arr[j], arr[i]];
+		for (let i = 0; i < arr.length - 1; i++) { //총 회차
+			for (let j = 0; j < arr.length - 1 - i; j++) { //각 회차 교환
+				if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
 			}
 		}
 		return arr;
 	}
 
-	let arr = [13, 5, 11, 7, 23, 15];
+	// let arr = [13, 5, 11, 7, 23, 15];
+	// [5, 7, 11, 13, 15, 23]
+
+	let arr = [13, 15, 313, 413, 5563, 123, 231, 1, 2, 5, 7, 6, 1, 33, 43, 665];
+	//(16) [1, 1, 2, 5, 6, 7, 13, 15, 33, 43, 123, 231, 313, 413, 665, 5563]
 	console.log(solution(arr));
 </script>
