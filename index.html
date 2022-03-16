@@ -1,24 +1,18 @@
 <script>
-function solution(size, arr){
-  let answer=Array.from({length: size}, () => 0);
-  arr.forEach(x => {
-    let pos=-1;
-    for (let i = 0; i < size; i++) if (answer[i]===x) pos = i;
+function solution(arr){
+  let answer=[];
+  let sortedArr = [...arr].sort((a, b) => a - b);
 
-    if (pos === -1) {
-      for (let i = size-1; i > 0; i--) {
-        answer[i] = answer[i-1];
-      }
-    } else {
-      for (let i = pos; i > 0; i--) {
-        answer[i] = answer[i-1];
-      }
-    }
-    answer[0] = x;
+  arr.forEach((val, idx) => {
+    if (val !== sortedArr[idx]) answer.push(idx+1);
   })
+    
   return answer;
 }
 
-let arr=[1, 2, 3, 2, 6, 2, 3, 5, 7];
-console.log(solution(5, arr)); //(5) [7, 5, 3, 2, 6]
+let arr=[120, 125, 152, 130, 135, 135, 143, 127, 160];
+console.log(solution(arr)); // [3, 8]
+
+let arr2 = [120, 130, 150, 150, 130, 150];
+console.log(solution(arr2)); // [3, 5]
 </script>
