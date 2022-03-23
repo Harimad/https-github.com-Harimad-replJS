@@ -1,31 +1,17 @@
 <script>
-function solution(times){
-  let answer = 0;
-  let count = 0;
-  let timeline = [];
-  //먼저 입력된 times를 각 항목마다 시작요소에는 's'를 끝요소에는 's'를 넣어서 timeline배열에 넣는다.
-  times.map(item => {
-    timeline.push([item[0], 's'])
-    timeline.push([item[1], 'e'])
-  })
+function solution(target, arr){
+  arr.sort((a, b) => a - b)
 
-  //timeline배열의 시간을 기준으로 오름차순 정렬. 시간이 똑같다면 끝나는 시간이 먼저 오도록 한다.
-  timeline.sort((a, b) => {
-    if (a[0] === b[0]) return a[1].charCodeAt() - b[1].charCodeAt()
-    return a[0] - b[0]
-  })
-  // console.log(timeline)
+  let start = 0, end = arr.length-1, mid;
+  while(start <= end) {
+    mid = Math.floor((start+end) / 2)
+    if (target === arr[mid]) return mid + 1
 
-  //s 가 나오면 count++, e가 나오면 count--를 해주고 count해줄때마다 answer값을 최신화시킴
-  for (let x of timeline) {
-    if (x[1] === 's')count++;
-    else count--;
-    answer = Math.max(answer, count)
+    if (target < arr[mid]) end = mid - 1
+    else start = mid + 1
   }
-
-  return answer;
 }
 
-let arr=[[14, 18], [12, 15], [15, 20], [20, 30], [5, 14]];
-console.log(solution(arr));
+let arr=[23, 87, 65, 12, 57, 32, 99, 81];
+console.log(solution(32, arr));
 </script>
