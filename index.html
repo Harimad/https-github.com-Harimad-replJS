@@ -1,16 +1,25 @@
 <script>
   function solution(n) {
-    let answer = "";
-    function DFS(v) { //v 는 vertex(꼭짓점)의 약자
-      if (v > 7) return
-      else {
-        console.log(v)
-        DFS(v * 2)
-        DFS(v * 2 + 1)
+    let answer = [];
+    let check = Array.from({ length: n + 1 }, () => 0); // [0, 0, 0, 0]
+    function DFS(level) {
+      if (level === n + 1) {
+        let tmp = ""
+        for (let i = 1; i <= n; i++) {
+          if (check[i] === 1) tmp += `${i} `;
+        }
+        if (tmp.length > 0) answer.push(tmp.trim())
+        console.log(check)
+      } else {
+        check[level] = 1;
+        DFS(level + 1);
+        check[level] = 0;
+        DFS(level + 1);
       }
     }
-    DFS(n);
+    DFS(1);
     return answer;
   }
-  solution(1);
+
+  console.log(solution(3));
 </script>
