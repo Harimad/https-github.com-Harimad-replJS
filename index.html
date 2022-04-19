@@ -1,15 +1,16 @@
 <script>
   function solution(n) {
     let answer = "";
-    function DFS(num) {
-      if (num === 0) return 0
+    function DFS(v) { //v 는 vertex(꼭짓점)의 약자
+      if (v > 7) return
       else {
-        DFS(parseInt(num / 2))
-        answer += num % 2
+        console.log(v)
+        DFS(v * 2)
+        DFS(v * 2 + 1)
       }
     }
     DFS(n);
     return answer;
   }
-  console.log(solution(11));
+  solution(1);
 </script>
